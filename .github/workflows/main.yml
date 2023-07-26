@@ -24,7 +24,6 @@ jobs:
   assign-labels:
       name: Assign Label to the PR
       runs-on: ubuntu-latest
-      if: github.event_name!='push'
       needs: create_issue
       env:
         NUMBER: ${{ github.event.number }}
