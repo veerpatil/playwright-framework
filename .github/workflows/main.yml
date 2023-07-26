@@ -25,6 +25,7 @@ jobs:
   assign-labels:
       name: Assign Label to the PR
       runs-on: ubuntu-latest
+      needs: create_issue
       steps:
       -   name: Add Labels to the PR
           run: |
