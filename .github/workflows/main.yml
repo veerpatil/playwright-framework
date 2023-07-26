@@ -3,7 +3,7 @@ on:
   [pull_request]
 env:
       NUMBER: ${{ github.event.number }}
-      LABELS: '["enhancement"]'
+      LABELS: '["enhancement","Bug"]'
 jobs:
   assign-labels:
       name: Assign Label to the PR
