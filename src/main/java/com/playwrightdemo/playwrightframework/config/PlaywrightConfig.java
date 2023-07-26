@@ -16,18 +16,16 @@ public class PlaywrightConfig
     public Browser chromeBrowser()
     {
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.chromium().launch( new LaunchOptions().setHeadless(false));
-        return browser;
+        return playwright.chromium().launch( new LaunchOptions().setHeadless(false));
     }
 
 
     @Bean
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
-    public Browser firfoxBrowser()
+    public Browser firefoxBrowser()
     {
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.firefox().launch( new LaunchOptions().setHeadless(false));
-        return browser;
+        return playwright.firefox().launch( new LaunchOptions().setHeadless(false));
     }
 
 
@@ -36,7 +34,6 @@ public class PlaywrightConfig
     public Browser webKitBrowser()
     {
         Playwright playwright = Playwright.create();
-        Browser browser = playwright.webkit().launch( new LaunchOptions().setHeadless(false));
-        return browser;
+        return playwright.webkit().launch( new LaunchOptions().setHeadless(false));
     }
 }

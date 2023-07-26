@@ -8,7 +8,7 @@ import com.microsoft.playwright.Page;
 
 import jakarta.annotation.PostConstruct;
 
-public abstract class BasePage {
+public abstract class Base {
 
     @Autowired
     private Browser browser;
