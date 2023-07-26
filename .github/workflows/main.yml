@@ -25,6 +25,7 @@ jobs:
       name: Assign Label to the PR
       runs-on: ubuntu-latest
       needs: create_issue
+      if: github.event_name!='push'
       env:
         NUMBER: ${{ github.event.number }}
         LABELS: '["enhancement"]'
