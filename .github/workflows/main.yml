@@ -1,7 +1,7 @@
 name: Create issue on commit
 
-on:
-  push:
+on: 
+  [push,pull_request]
 env:
       NUMBER: ${{ github.event.number }}
       LABELS: '["enhancement"]'
