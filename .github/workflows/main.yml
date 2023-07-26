@@ -1,8 +1,10 @@
 name: Create issue on commit
 
 on: 
-  [push,pull_request]
-
+  pull_request:
+  push:
+    branches:
+      -master
 jobs:
   create_issue:
     runs-on: ubuntu-latest
