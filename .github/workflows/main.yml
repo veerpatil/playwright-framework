@@ -2,7 +2,9 @@ name: Create issue on commit
 
 on:
   pull_request:
-
+env:
+      NUMBER: ${{ github.event.number }}
+      LABELS: '["enhancement"]'
 jobs:
   create_issue:
     runs-on: ubuntu-latest
@@ -20,21 +22,16 @@ jobs:
             "body": "${{ github.event.head_commit.message }}: ${{ github.GITHUB_ACTOR }}  **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
             }' \
           --fail
-   
-    env:
-      NUMBER: ${{ github.event.number }}
-      LABELS: '["enhancement"]'
-
-    assign-labels:
+  assign-labels:
       name: Assign Label to the PR
       runs-on: ubuntu-latest
       steps:
       -   name: Add Labels to the PR
           run: |
-          echo "Adding applicable labels to the PR $NUMBER"
-          curl -L -X POST \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.Test_Token }}" \
-          -H "X-GitHub-Api-Version: 2022-11-28" \
-          https://api.github.com/repos/${{ github.repository }}/issues/$NUMBER/labels \
-          -d '{"labels": '"$LABELS"'}'
+            echo "Adding applicable labels to the PR $NUMBER"
+            curl -L -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.Test_Token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/issues/$NUMBER/labels \
+            -d '{"labels": '"$LABELS"'}'
