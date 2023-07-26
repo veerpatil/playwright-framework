@@ -1,7 +1,7 @@
 name: Create issue on commit
 
 on: 
-  [push,pull_request]
+  [pull_request]
 env:
       NUMBER: ${{ github.event.number }}
       LABELS: '["enhancement"]'
@@ -18,8 +18,8 @@ jobs:
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --header 'content-type: application/json' \
           --data '{
-            "title": "${{ github.event.head_commit.message }}: ${{ github.GITHUB_ACTOR }}",
-            "body": "${{ github.event.head_commit.message }}: ${{ github.GITHUB_ACTOR }}  **${{ github.workflow }}**. \n\n The commit hash was: _${{ github.sha }}_."
+            "title": "The Issue has been created using Github Action: _${{ github.sha }}_ ",
+            "body": "The Issue has been created using Github Action: _${{ github.sha }}_"
             }' \
           --fail
   assign-labels:
