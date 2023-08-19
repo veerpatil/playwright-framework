@@ -1,5 +1,6 @@
 package com.playwrightdemo.playwrightframework.config;
 import com.microsoft.playwright.Page;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +16,14 @@ import java.nio.file.Paths;
 public class PlaywrightConfig
 {
 
-
+    @Value("${headless}")
+    private boolean headless;
     @Bean
-    @ConditionalOnProperty(name = "browser", havingValue = "chrome")
+    @ConditionalOnProperty(name = "browser", havingValue = "chrome" )
     public Browser chromeBrowser()
     {
         Playwright playwright = Playwright.create();
-        return playwright.chromium().launch( new LaunchOptions().setHeadless(false));
+        return playwright.chromium().launch( new LaunchOptions().setHeadless(headless));
     }
 
 
@@ -30,7 +32,7 @@ public class PlaywrightConfig
     public Browser firefoxBrowser()
     {
         Playwright playwright = Playwright.create();
-        return playwright.firefox().launch( new LaunchOptions().setHeadless(false));
+        return playwright.firefox().launch( new LaunchOptions().setHeadless(headless));
     }
 
 
@@ -39,7 +41,7 @@ public class PlaywrightConfig
     public Browser webKitBrowser()
     {
         Playwright playwright = Playwright.create();
-        return playwright.webkit().launch( new LaunchOptions().setHeadless(false));
+        return playwright.webkit().launch( new LaunchOptions().setHeadless(headless));
     }
 
     @Bean
