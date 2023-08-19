@@ -1,10 +1,12 @@
 package com.playwrightdemo.playwrightframework.page;
+import com.microsoft.playwright.Page;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class LoginPage  extends Base {
+public class LoginPage  extends BasePage{
 
 
 
@@ -13,12 +15,8 @@ public class LoginPage  extends Base {
     private static final String passwordLocator="#Password";
 
     private static final String loginButton="button[type='submit']";
-    @Value("${baseUrl}")
-    private String URL;
-    public void goTo()
-    {
-        this.page.navigate(URL);
-    }
+
+
      public void setEmail(String email)
      {
         this.page.locator(emailLocator).clear();
